@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2vt1c15fwc"]
+
+[ext_resource type="Script" path="res://scenes/controllers/wind_controller.gd" id="1_ph8nt"]
+[ext_resource type="PackedScene" uid="uid://3f5ajuwig6mb" path="res://scenes/objects/vector_mesh.tscn" id="2_uox3s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43p60"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.596078, 0, 1)
+emission_energy_multiplier = 2.0
+
+[node name="WindController" type="Node3D"]
+script = ExtResource("1_ph8nt")
+
+[node name="VectorMesh" parent="." instance=ExtResource("2_uox3s")]
+
+[node name="MeshInstance3D" parent="VectorMesh" index="0"]
+material_override = SubResource("StandardMaterial3D_43p60")
+cast_shadow = 0
+
+[node name="MeshInstance3D2" parent="VectorMesh" index="1"]
+material_override = SubResource("StandardMaterial3D_43p60")
+cast_shadow = 0
+
+[editable path="VectorMesh"]

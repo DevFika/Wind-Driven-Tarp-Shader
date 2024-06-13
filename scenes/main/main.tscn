@@ -1,0 +1,371 @@
+[gd_scene load_steps=11 format=3 uid="uid://cshaen1vwm75r"]
+
+[ext_resource type="PackedScene" uid="uid://byy25nh8xttj8" path="res://assets/meshes/base.tscn" id="1_oxw8b"]
+[ext_resource type="PackedScene" uid="uid://bnbx23gv2o26e" path="res://assets/meshes/tarp_combined.tscn" id="2_8n6g6"]
+[ext_resource type="Texture2D" uid="uid://cuoqf238fix23" path="res://assets/textures/grid_albedo.jpg" id="2_mimyk"]
+[ext_resource type="PackedScene" uid="uid://q60cow7iqk41" path="res://assets/meshes/top.tscn" id="3_mws26"]
+[ext_resource type="PackedScene" uid="uid://c2vt1c15fwc" path="res://scenes/controllers/wind_controller.tscn" id="5_qalrb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dmo1h"]
+sky_horizon_color = Color(0.686275, 0.662745, 0.505882, 1)
+ground_bottom_color = Color(0.686275, 0.662745, 0.505882, 1)
+ground_horizon_color = Color(0.686275, 0.662745, 0.505882, 1)
+
+[sub_resource type="Sky" id="Sky_xk5ul"]
+sky_material = SubResource("ProceduralSkyMaterial_dmo1h")
+
+[sub_resource type="Environment" id="Environment_utlsb"]
+background_mode = 2
+sky = SubResource("Sky_xk5ul")
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssao_radius = 0.24
+ssao_intensity = 3.8
+ssao_light_affect = 0.11
+ssao_ao_channel_affect = 1.0
+glow_enabled = true
+fog_light_color = Color(0.488706, 0.204748, 0.169251, 1)
+fog_light_energy = 0.15
+fog_sky_affect = 0.0
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.686275, 0.662745, 0.505882, 1)
+adjustment_enabled = true
+adjustment_brightness = 1.14
+adjustment_contrast = 1.1
+adjustment_saturation = 1.04
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofbhr"]
+albedo_color = Color(0.388235, 0.388235, 0.388235, 1)
+albedo_texture = ExtResource("2_mimyk")
+roughness = 0.81
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_exio5"]
+size = Vector2(100, 100)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_utlsb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.38395, -0.727929, 0.568069, 0.647416, 0.226427, 0.727725, -0.658358, 0.647187, 0.384336, 4, -2, 0)
+light_color = Color(1, 0.992157, 0.960784, 1)
+light_energy = 1.312
+shadow_enabled = true
+
+[node name="World" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="MeshInstance3D" parent="World"]
+transform = Transform3D(10.2806, 0, 0, 0, 10.2806, 0, 0, 0, 10.2806, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ofbhr")
+mesh = SubResource("PlaneMesh_exio5")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Floor2" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-4.49379e-07, 10.2806, 0, -10.2806, -4.49379e-07, 0, 0, 0, 10.2806, -478.992, -268.052, 0)
+material_override = SubResource("StandardMaterial3D_ofbhr")
+mesh = SubResource("PlaneMesh_exio5")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Floor3" type="MeshInstance3D" parent="World"]
+transform = Transform3D(4.49379e-07, -10.2806, -8.98758e-07, -10.2806, -4.49379e-07, 0, -3.9286e-14, 8.98758e-07, -10.2806, 472.834, -268.052, 0)
+material_override = SubResource("StandardMaterial3D_ofbhr")
+mesh = SubResource("PlaneMesh_exio5")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Floor4" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1.9643e-14, -4.49379e-07, 10.2806, -10.2806, -4.49379e-07, 0, 4.49379e-07, -10.2806, -4.49379e-07, -3.07908, -268.052, 475.913)
+material_override = SubResource("StandardMaterial3D_ofbhr")
+mesh = SubResource("PlaneMesh_exio5")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Floor5" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-5.8929e-14, 1.34814e-06, -10.2806, -10.2806, -4.49379e-07, -7.54703e-21, -4.49379e-07, 10.2806, 1.34814e-06, -3.07912, -268.052, -475.913)
+material_override = SubResource("StandardMaterial3D_ofbhr")
+mesh = SubResource("PlaneMesh_exio5")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="Base" parent="Meshes" instance=ExtResource("1_oxw8b")]
+
+[node name="TarpCombined" parent="Meshes" instance=ExtResource("2_8n6g6")]
+
+[node name="Top" parent="Meshes" instance=ExtResource("3_mws26")]
+
+[node name="Base2" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="TarpCombined2" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Top2" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Base3" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -8)
+
+[node name="TarpCombined3" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -8)
+
+[node name="Top3" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -8)
+
+[node name="Base4" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -8)
+
+[node name="TarpCombined4" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -8)
+
+[node name="Top4" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -8)
+
+[node name="Base5" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 0, -8)
+
+[node name="TarpCombined5" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 0, -8)
+
+[node name="Top5" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 0, -8)
+
+[node name="Base6" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 0, -4)
+
+[node name="TarpCombined6" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 0, -4)
+
+[node name="Top6" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 0, -4)
+
+[node name="Base7" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -8, 0, 0)
+
+[node name="TarpCombined7" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -8, 0, 0)
+
+[node name="Top7" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -8, 0, 0)
+
+[node name="Base9" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -12, 0, 8)
+
+[node name="TarpCombined10" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, 4)
+
+[node name="Top9" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, 4)
+
+[node name="Base10" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, 0)
+
+[node name="TarpCombined11" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, 0)
+
+[node name="Top10" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, 0)
+
+[node name="Base11" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -4)
+
+[node name="TarpCombined12" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -4)
+
+[node name="Top11" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -4)
+
+[node name="Base12" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -12)
+
+[node name="TarpCombined13" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -12)
+
+[node name="Top12" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -12)
+
+[node name="Base22" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -8)
+
+[node name="TarpCombined23" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -8)
+
+[node name="Top22" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, -8)
+
+[node name="Base13" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, -16)
+
+[node name="TarpCombined14" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, -16)
+
+[node name="Top13" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, -16)
+
+[node name="Base14" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -12, 0, -16)
+
+[node name="TarpCombined15" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -12, 0, -16)
+
+[node name="Top14" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -12, 0, -16)
+
+[node name="Base15" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -8, 0, -16)
+
+[node name="TarpCombined16" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -8, 0, -16)
+
+[node name="Top15" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -8, 0, -16)
+
+[node name="Base17" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -4, 0, -16)
+
+[node name="TarpCombined18" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -4, 0, -16)
+
+[node name="Top17" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -4, 0, -16)
+
+[node name="Base18" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 0, 0, -16)
+
+[node name="TarpCombined19" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 0, 0, -16)
+
+[node name="Top18" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 0, 0, -16)
+
+[node name="Base19" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, -16)
+
+[node name="TarpCombined20" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, -16)
+
+[node name="Top19" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, -16)
+
+[node name="Base20" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 8, 0, -16)
+
+[node name="Base21" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, 8)
+
+[node name="TarpCombined22" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, 8)
+
+[node name="Top21" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, 8)
+
+[node name="Base16" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, 4)
+
+[node name="TarpCombined21" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, 8)
+
+[node name="Top20" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -16, 0, 8)
+
+[node name="Base28" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, 8)
+
+[node name="TarpCombined24" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, 4)
+
+[node name="Top23" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, 4)
+
+[node name="Base23" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, 0)
+
+[node name="TarpCombined25" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, 0)
+
+[node name="Top24" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, 0)
+
+[node name="Base24" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -4)
+
+[node name="TarpCombined26" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -4)
+
+[node name="Top25" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -4)
+
+[node name="Base25" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -12)
+
+[node name="TarpCombined27" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -12)
+
+[node name="Top26" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -12)
+
+[node name="Base26" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -8)
+
+[node name="TarpCombined28" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -8)
+
+[node name="Top27" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, -8)
+
+[node name="Base27" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 8, 0, 4)
+
+[node name="TarpCombined29" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, 8)
+
+[node name="Top28" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 8, 0, 8)
+
+[node name="Base29" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 8, 0, 8)
+
+[node name="TarpCombined17" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, 8)
+
+[node name="Top16" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, 8)
+
+[node name="Base30" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -12, 0, 0)
+
+[node name="Base31" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, 0)
+
+[node name="TarpCombined30" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, 0)
+
+[node name="Top29" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 4, 0, 0)
+
+[node name="TarpCombined31" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, 0)
+
+[node name="Top30" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -16, 0, 0)
+
+[node name="Base8" parent="Meshes" instance=ExtResource("1_oxw8b")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -4, 0, 0)
+
+[node name="TarpCombined8" parent="Meshes" instance=ExtResource("2_8n6g6")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -4, 0, 0)
+
+[node name="Top8" parent="Meshes" instance=ExtResource("3_mws26")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -4, 0, 0)
+
+[node name="WindController" parent="." instance=ExtResource("5_qalrb")]
+transform = Transform3D(0.914189, 0, -0.405152, 0, 1, 0, 0.405152, 0, 0.914189, -4.01166, 4.284, -4.00619)
+wind_intensity = 1.23

@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://byvwy4ucprh86"]
+
+[ext_resource type="Shader" path="res://materials/s_wind.gdshader" id="1_dih78"]
+[ext_resource type="Texture2D" uid="uid://cd67gas8m7qya" path="res://materials/wind_noise_texture.tres" id="2_kkjgu"]
+
+[sub_resource type="Gradient" id="Gradient_p7u3p"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kwsub"]
+gradient = SubResource("Gradient_p7u3p")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dih78")
+shader_parameter/texture_uv_scale = 1.0
+shader_parameter/albedo_texture = SubResource("GradientTexture1D_kwsub")
+shader_parameter/wind_noise_texture = ExtResource("2_kkjgu")

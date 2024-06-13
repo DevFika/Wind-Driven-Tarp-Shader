@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://cl2wcgh8achep"]
+
+[ext_resource type="Shader" path="res://materials/s_wind.gdshader" id="1_0afio"]
+[ext_resource type="Texture2D" uid="uid://dqf1ep0vegkoh" path="res://assets/textures/t_metal_albedo.PNG" id="2_j2juy"]
+[ext_resource type="Texture2D" uid="uid://5inspc3tgunv" path="res://assets/textures/t_metal_normal.PNG" id="3_aphhn"]
+[ext_resource type="Texture2D" uid="uid://b05e57ica34ab" path="res://assets/textures/t_metal_orm.PNG" id="4_ds6vv"]
+[ext_resource type="Texture2D" uid="uid://cd67gas8m7qya" path="res://materials/wind_noise_texture.tres" id="5_m8hsq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0afio")
+shader_parameter/texture_uv_scale = 1.0
+shader_parameter/albedo_texture = ExtResource("2_j2juy")
+shader_parameter/normal_texture = ExtResource("3_aphhn")
+shader_parameter/orm_texture = ExtResource("4_ds6vv")
+shader_parameter/wind_noise_texture = ExtResource("5_m8hsq")

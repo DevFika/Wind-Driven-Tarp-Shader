@@ -1,0 +1,47 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="WindyTarpShader"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://materials/": "teal",
+"res://scenes/": "purple"
+}
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=3
+
+[shader_globals]
+
+wind_direction={
+"type": "vec3",
+"value": Vector3(0, 0, 1)
+}
+wind_intensity={
+"type": "float",
+"value": 1.0
+}
+wind_speed={
+"type": "float",
+"value": 1.0
+}

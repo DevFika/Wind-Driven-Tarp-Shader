@@ -1,0 +1,8 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://cd67gas8m7qya"]
+
+[ext_resource type="FastNoiseLite" uid="uid://co38fo0woqjek" path="res://materials/wind_noise.tres" id="1_kwqdq"]
+
+[resource]
+seamless = true
+normalize = false
+noise = ExtResource("1_kwqdq")

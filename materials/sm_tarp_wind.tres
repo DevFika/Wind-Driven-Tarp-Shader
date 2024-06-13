@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://b6pxbxw301iny"]
+
+[ext_resource type="Shader" path="res://materials/s_wind.gdshader" id="1_qotja"]
+[ext_resource type="Texture2D" uid="uid://e3ts8rbm12nk" path="res://assets/textures/t_tarp_albedo.PNG" id="2_2b0aj"]
+[ext_resource type="Texture2D" uid="uid://di8jat1rmd10j" path="res://assets/textures/t_tarp_normal.PNG" id="3_oldx6"]
+[ext_resource type="Texture2D" uid="uid://d3lk6wi5igusb" path="res://assets/textures/t_tarp_orm.PNG" id="4_hj15x"]
+[ext_resource type="Texture2D" uid="uid://cd67gas8m7qya" path="res://materials/wind_noise_texture.tres" id="5_rv1im"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qotja")
+shader_parameter/texture_uv_scale = 1.0
+shader_parameter/albedo_texture = ExtResource("2_2b0aj")
+shader_parameter/normal_texture = ExtResource("3_oldx6")
+shader_parameter/orm_texture = ExtResource("4_hj15x")
+shader_parameter/wind_noise_texture = ExtResource("5_rv1im")
